@@ -9,6 +9,10 @@ class _AnimationBaseDemoState extends State<AnimationBaseDemo> with SingleTicker
   double _size = 100;
   AnimationController _controller;
 
+  Color _startColor = Colors.blue;
+  Color _endColor = Colors.red;
+  Color _color = Colors.blue;
+
   @override
   void initState() {
     super.initState();
@@ -23,6 +27,8 @@ class _AnimationBaseDemoState extends State<AnimationBaseDemo> with SingleTicker
       ..addListener(() {
         setState(() {
           _size = 100 + 100 * _controller.value;
+          _color = Color.lerp(_startColor, _endColor, _controller.value);
+          print("value: ${_controller.value}");
         });
       });
   }
@@ -37,7 +43,7 @@ class _AnimationBaseDemoState extends State<AnimationBaseDemo> with SingleTicker
         child: Container(
           height: _size,
           width: _size,
-          color: Colors.blue,
+          color: _color,
           alignment: Alignment.center,
           child: Text(
             '点我变大',
