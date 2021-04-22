@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(title: Text("Button")),
         body: Center(
-          child: AnimationBaseDemo(),
+          child: CurveDemo(),
         ),
       ),
     );

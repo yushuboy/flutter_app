@@ -7,11 +7,10 @@ class AnimationBaseDemo extends StatefulWidget {
 
 class _AnimationBaseDemoState extends State<AnimationBaseDemo> with SingleTickerProviderStateMixin {
   double _size = 100;
+
   AnimationController _controller;
 
-  Color _startColor = Colors.blue;
-  Color _endColor = Colors.red;
-  Color _color = Colors.blue;
+  Animation<Color> _animation;
 
   @override
   void initState() {
@@ -27,10 +26,10 @@ class _AnimationBaseDemoState extends State<AnimationBaseDemo> with SingleTicker
       ..addListener(() {
         setState(() {
           _size = 100 + 100 * _controller.value;
-          _color = Color.lerp(_startColor, _endColor, _controller.value);
           print("value: ${_controller.value}");
         });
       });
+    _animation = ColorTween(begin: Colors.blue, end: Colors.red).animate(_controller);
   }
 
   @override
@@ -43,7 +42,63 @@ class _AnimationBaseDemoState extends State<AnimationBaseDemo> with SingleTicker
         child: Container(
           height: _size,
           width: _size,
-          color: _color,
+          color: _animation.value,
+          alignment: Alignment.center,
+          child: Text(
+            '点我变大',
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+}
+
+class CurveDemo extends StatefulWidget {
+  @override
+  _CurveDemoState createState() => _CurveDemoState();
+}
+
+class _CurveDemoState extends State<CurveDemo> with SingleTickerProviderStateMixin {
+  AnimationController _controller;
+  Animation _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 1000))
+      ..addStatusListener((AnimationStatus status) {
+        if (status == AnimationStatus.completed) {
+          _controller.reverse();
+        } else if (status == AnimationStatus.dismissed) {
+          _controller.forward();
+        }
+      })
+      ..addListener(() {
+        setState(() {});
+      });
+
+    ///CurveTween(curve: Curves.linear)差值器
+    _animation = Tween(begin: 100.0, end: 200.0).chain(CurveTween(curve: Curves.decelerate)).animate(_controller);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: GestureDetector(
+        onTap: () {
+          _controller.forward();
+        },
+        child: Container(
+          height: _animation.value,
+          width: _animation.value,
+          color: Colors.blue,
           alignment: Alignment.center,
           child: Text(
             '点我变大',
