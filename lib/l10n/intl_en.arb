@@ -1,0 +1,14 @@
+{
+  "home_title": "Home",
+  "page_a": "A Page",
+  "page_b": "B Page",
+  "page_c": "C Page",
+  "page_d": "D Page",
+  "return_data_form_d": "the data from D Page",
+  "count": "scour:{count}",
+  "@count": {
+    "placeholders": {
+      "count": {}
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "home_title": "首页",
+  "page_a": "A 页面",
+  "page_b": "B 页面11",
+  "page_c": "C 页面",
+  "page_d": "D 页面",
+  "return_data_form_d": "从D页面返回的数据",
+  "count": "总分:{count}",
+  "@count": {
+    "placeholders": {
+      "count": {}
+    }
+  }
+}
