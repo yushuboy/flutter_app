@@ -34,9 +34,11 @@ dependencies:
   provider: ^5.0.0 #用于实时切换语言的状态管理
   shared_preferences: ^2.0.5 #共享存储
   sqflite: ^2.0.0+3  #SQL数据库
-  http: ^0.13.1  #http
-  dio: ^4.0.0  #http
+#  http: ^0.13.1  #http
+#  dio: ^4.0.0  #http
   device_info: ^2.0.0
+  animations: ^2.0.0
+  flutter_app_upgrade: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -87,3 +89,11 @@ flutter:
     - assets/images/
 flutter_intl:
   enabled: true
+
+dependency_overrides:
+  flutter_app_upgrade:
+    #    path: ../../../flutter-do/flutter_app_upgrade
+    git:
+      url: https://github.com/yushuboy/flutter-do.git
+      ref: master
+      path: flutter_app_upgrade

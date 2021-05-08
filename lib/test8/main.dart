@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/test8/animation_controller.dart';
+import 'package:flutter_app/test8/transition_anim.dart';
+
+import 'custom_view.dart';
+import 'hero_animation.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,7 +18,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(title: Text("Button")),
         body: Center(
-          child: CurveDemo(),
+          child: Transition(),
         ),
       ),
     );
